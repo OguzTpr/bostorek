@@ -1,15 +1,22 @@
 <template>
-    <Navbar />
-</template>
+    <NavBar />
+
+    </template>
 
 <script>
 
-import Navbar from '@/components/navbar.vue';
+import NavBar from '@/components/navbar.vue';
 
 export default {
     name: "App",
     components: {
-        Navbar
+        NavBar
+    },
+    
+    data() {
+        return {
+
+        }
     }
 }
 </script>
@@ -18,6 +25,6 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200..1000&display=swap');
 
 html, body {
- font-family: "mulish", sans-serif;
+ font-family: "Mulish", sans-serif;
 }
 </style>
