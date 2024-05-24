@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        <h1>R.e.g.i.s.t.e.r</h1>
     </div>
 </template>
 

@@ -1,13 +1,13 @@
 <template>
     <div>
-        <sectionHeader title="C.o.n.t.a.c.t" text="Some text about contacts"/>
+        <sectionHeader title="H.o.m.e" text="Some text about company or project information"/>
     </div>
 </template>
 
 <script>
 import sectionHeader from '@/components/sectionheader.vue';
     export default {
-        name: "contact",
+        name: "home",
         components: {
             sectionHeader
         }
