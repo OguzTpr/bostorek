@@ -2,12 +2,14 @@
 <section>
     <div class="container">
 <sectionHeader title="B.o.o.k.s" text="Some text about books"/>
-<BookList :books="books"/>
+<BookList :books="paginatedBooks"/>
+<pagination :currentPage="currentPage" :totalPages="totalPages" @pageChange="upPage"/>
 </div>
 </section>
 </template>
 
 <script>
+import pagination from '@/components/pagination.vue';
 import BookList from '@/components/booklist.vue';
 import sectionHeader from '@/components/sectionheader.vue';
 import books from '@/db.js';
@@ -15,11 +17,29 @@ import books from '@/db.js';
         name: "books",
         components:{
             sectionHeader,
-            BookList
+            BookList,
+            pagination
         },
         data() {
             return{
-                books: books
+                books: books,
+                currentPage: 1,
+                itemsPerPage: 4
+            }
+        },
+        computed: {
+            totalPages() {
+                return Math.ceil(this.books.length / this.itemsPerPage)
+            },
+            paginatedBooks() {
+            const starting = (this.currentPage -1) * this.itemsPerPage;
+            const ending = starting + this.itemsPerPage;
+            return this.books.slice(starting, ending);
+            }
+        },
+        methods: {
+            upPage(page) {
+                this.currentPage = page
             }
         }
         

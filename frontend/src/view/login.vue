@@ -1,12 +1,16 @@
 <template>
     <div>
-        <h1>L.o.g.i.n</h1>
+        <sectionHeader title="L.o.g.i.n" text="Login information input form"/>
     </div>
 </template>
 
 <script>
+import sectionHeader from '@/components/sectionheader.vue';
     export default {
-        name: "login"
+        name: "login",
+        components: {
+            sectionHeader
+        }
     }
 </script>
 

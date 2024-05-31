@@ -1,12 +1,16 @@
 <template>
     <div>
-        <h1>R.e.g.i.s.t.e.r</h1>
+        <sectionHeader title="R.e.g.i.s.t.e.r" text="Registration input form"/>
     </div>
 </template>
 
 <script>
+    import sectionHeader from '@/components/sectionheader.vue';
     export default {
-        name: "register"
+        name: "register",
+        components: {
+            sectionHeader
+        }
     }
 </script>
 

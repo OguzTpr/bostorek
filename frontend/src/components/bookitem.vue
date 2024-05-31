@@ -1,6 +1,6 @@
 <template>
     <div class="card border-0 shadow position-relative">
-        <img src= "https://img.kitapyurdu.com/v1/getImage/fn:2814/wh:true/wi:200" class="card-img-top" />
+        <img src="https://img.kitapyurdu.com/v1/getImage/fn:1113480/wh:true/wi:200"  class="card-img-top" />
         <div class="card-body">
             <div class="auth-box">
                 <span style="background-color: cadetblue;" class="py-1 px-3 text-white rounded-pill">
@@ -14,7 +14,9 @@
                 <p style="background-color: cadetblue" class="py=1 px=20 text-white badge mb-0">{{ book.uploadDate }}</p>
             </div>
         </div>
-        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-info text-light rounded-circle border border-2">{{ book.rating }}</span>
+        <span 
+        :class="ratingBadgeClass"
+        class="position-absolute top-0 start-100 translate-middle p-2 text-light rounded-circle border border-2">{{ book.rating }}</span>
     </div>
 </template>
 
@@ -25,6 +27,18 @@
             book: {
                 type: Object,
                 default: ()=> ({})
+            }
+        },
+        computed: {
+            ratingBadgeClass() {
+                if (this.book.rating > 8) {
+                    return 'bg-success'
+                } else if (this.book.rating > 6) {
+                    return 'bg-warning'
+                } else {
+                    return 'bg-danger'
+                }
+                
             }
         }
     }
