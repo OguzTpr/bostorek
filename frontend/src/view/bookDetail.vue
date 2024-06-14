@@ -9,30 +9,30 @@
             </div>
             <div class="col-lg-6">
                 <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut deleniti quae hic, ex non impedit quam ratione nihil. Magnam commodi doloribus impedit exercitationem labore, rerum quo animi a quidem autem?</p>
-            </div>
             
-                <div class="row border-bottom pb-2">
+            <div>
+                <div class="row border-bottom pb-3">
                     <div class="col-lg-6"><strong>Gender</strong></div>
                     <div class="col-lg-6">fiction</div>
                 </div>
             
-                <div class="row border-bottom pb-2">
+                <div class="row border-bottom pb-3">
                     <div class="col-lg-6"><strong>Page</strong></div>
                     <div class="col-lg-6">278</div>
                 </div>
             
-                <div class="row border-bottom pb-2">
+                <div class="row border-bottom pb-3">
                     <div class="col-lg-6"><strong>Rating</strong></div>
                     <div class="col-lg-6">7.8</div>
                 </div>
             
-                <div class="row border-bottom pb-2">
+                <div class="row border-bottom pb-3">
                     <div class="col-lg-6"><strong>Date</strong></div>
                     <div class="col-lg-6">27.8.2020</div>
                 </div>
-            
+            </div>
         </div>
-    
+      </div>
     </div>
 </section>
 </template>
