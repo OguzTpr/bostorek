@@ -1,6 +1,6 @@
 <template>
     <div class="card border-0 shadow position-relative">
-        <img src="https://img.kitapyurdu.com/v1/getImage/fn:1113480/wh:true/wi:200"  class="card-img-top" />
+        <img :src="book.image"  class="card-img-top" />
         <div class="card-body">
             <div class="auth-box">
                 <span style="background-color: cadetblue;" class="py-1 px-3 text-white rounded-pill">

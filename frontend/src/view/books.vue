@@ -3,7 +3,7 @@
     <div class="container">
 <sectionHeader title="B.o.o.k.s" text="Some text about books"/>
 <BookList :books="paginatedBooks"/>
-<pagination :currentPage="currentPage" :totalPages="totalPages" @pageChange="upPage"/>
+<pagination :currentPage="currentPage" :totalPages="totalPages" @page-change="upPage" />
 </div>
 </section>
 </template>
@@ -37,6 +37,7 @@ import books from '@/db.js';
             return this.books.slice(starting, ending);
             }
         },
+        
         methods: {
             upPage(page) {
                 this.currentPage = page

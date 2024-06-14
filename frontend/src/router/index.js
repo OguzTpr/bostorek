@@ -4,6 +4,7 @@ import login from "@/view/login.vue";
 import register from "@/view/register.vue";
 import contact from '@/view/contact.vue';
 import books from '@/view/books.vue';
+import bookDetail from '@/view/bookDetail.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -17,6 +18,11 @@ const router = createRouter({
          path: "/books",
          name: "books",
          component: books
+        },
+        {
+        path: '/books/:id',
+        name: 'bookDetail',
+        component: bookDetail
         },
         {
          path: "/contact",
