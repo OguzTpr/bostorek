@@ -1,14 +1,14 @@
 <template>
     <section>
     <div class="container">
-        <sectionHeader title="B.o.o.k.D.e.t.a.i.l" text="All information about One book" />
-        <button>Back!</button>
+        <sectionHeader :title="book.name" :text="book.author" />
+        <font-awesome-icon icon="arrow-left" size="2xl" class="mb-2" style="cursor:pointer" @click="backToBooks" />
         <div class="row">
             <div class="col-lg-6">
-            <img src="https://pyxis.nymag.com/v1/imgs/9a3/38f/c3d22bb734cbabad3d4e304f960e3894cc-21-new-murakami-lede.rhorizontal.w600.jpg" alt="Murakami books" class="card-img-top" />
+            <img :src="book.image" alt="Murakami books" class="card-img-top" />
             </div>
             <div class="col-lg-6">
-                <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut deleniti quae hic, ex non impedit quam ratione nihil. Magnam commodi doloribus impedit exercitationem labore, rerum quo animi a quidem autem?</p>
+                <p class="lead">{{  book.description }}</p>
             
             <div>
                 <div class="row border-bottom pb-3">
@@ -18,17 +18,32 @@
             
                 <div class="row border-bottom pb-3">
                     <div class="col-lg-6"><strong>Page</strong></div>
-                    <div class="col-lg-6">278</div>
+                    <div class="col-lg-6">{{ book.page }}</div>
                 </div>
             
                 <div class="row border-bottom pb-3">
                     <div class="col-lg-6"><strong>Rating</strong></div>
-                    <div class="col-lg-6">7.8</div>
+                    <div class="col-lg-6">{{  book.rating }}</div>
                 </div>
             
                 <div class="row border-bottom pb-3">
                     <div class="col-lg-6"><strong>Date</strong></div>
-                    <div class="col-lg-6">27.8.2020</div>
+                    <div class="col-lg-6">{{ book.uploadDate }}</div>
+                </div>
+            </div>
+            <div class="comments">
+                <h3 class="display-6 mb-2">Comments</h3>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, totam?</p>
+                        <div class="d-flex justify-content-between">
+                            <p class="fw-bold fst-italic">John Doe</p>
+                            <div class="d-flex align-items-center">
+                                <font-awesome-icon :icon=" ['fas', 'thumbs-up']" />
+                                <p class="ps-2 mb-0"><strong>8</strong></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -38,11 +53,26 @@
 </template>
 
 <script>
+import books from '@/db';
 import sectionHeader from '@/components/sectionheader.vue';
 export default {
         name: "bookDetail",
         components: {
             sectionHeader
+        },
+        data() {
+            return {
+                book: null
+            }
+        },
+        created() {
+            const bookId = this.$route.params.id;
+            this.book = books.find(book => book.id === parseInt(bookId))
+        },
+        methods: {
+            backToBooks() {
+                this.$router.push({name:"books"})
+            }
         }
     }
 </script>
