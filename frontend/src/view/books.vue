@@ -1,5 +1,5 @@
 <template>
-<section>
+<section class="full-section">
     <div class="container">
 <sectionHeader title="B.o.o.k.s" text="Some text about books"/>
 <BookList :books="paginatedBooks"/>

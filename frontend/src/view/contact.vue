@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <section class="full-section">
         <sectionHeader title="C.o.n.t.a.c.t" text="Some text about contacts"/>
-    </div>
+    </section>
 </template>
 
 <script>

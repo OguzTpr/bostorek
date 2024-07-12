@@ -1,5 +1,5 @@
 <template>
-    <section>
+ <section class="full-section">
     <div class="container">
         <sectionHeader :title="book.name" :text="book.author" />
         <font-awesome-icon icon="arrow-left" size="2xl" class="mb-2" style="cursor:pointer" @click="backToBooks" />

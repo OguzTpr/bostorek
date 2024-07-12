@@ -32,27 +32,27 @@
 <style scoped>
 
 nav {
- background-color: #063547;
+ background-color: var(--primary);
  padding: 15px 0;
 }
 .navbar-brand {
     padding: 0;
     margin: 0;
-    color:aliceblue;
+    color: var(--second);
     font-size: large;
     font-weight: bold;
 }
 .nav-link {
     padding: 10px 15px;
-    color: aliceblue;
+    color: var(--second);
     text-align: center;
 }
 .nav-link:hover {
-    color: aquamarine;
+    color: var(--third);
     text-align: center;
 }
 .active-link {
-    color: turquoise;
+    color: var(--forth);
     text-align: center;
 }
 </style>

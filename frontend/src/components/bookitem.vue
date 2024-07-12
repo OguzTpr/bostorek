@@ -3,7 +3,7 @@
         <img :src="book.image"  class="card-img-top" />
         <div class="card-body">
             <div class="auth-box">
-                <span style="background-color: cadetblue;" class="py-1 px-3 text-white rounded-pill">
+                <span style="background-color: var(--fifth);" class="py-1 px-3 text-white rounded-pill">
                 {{ book.author}}
                 </span>
             </div>
@@ -11,7 +11,7 @@
             <p class="card-text">{{ truncatedText }}</p>
             <div class="d-flex justify-content-between align-items-center">
                 <a href="#" class="card-link">Read more</a>
-                <p style="background-color: cadetblue" class="py=1 px=20 text-white badge mb-0">{{ book.uploadDate }}</p>
+                <p style="background-color: var(--fifth)" class="py=1 px=20 text-white badge mb-0">{{ book.uploadDate }}</p>
             </div>
         </div>
         <span 

@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200..1000&display=swap');
+
+:root {
+    --primary: #063547;
+    --second: aliceblue;
+    --third: aquamarine;
+    --forth: turquoise;
+    --fifth: cadetblue;
+}
+
+
+html, body {
+ font-family: "Mulish", sans-serif;
+}
+a {
+    text-decoration: none;
+}
+
+.full-section {
+    min-height: calc(100vh - 150px);
+    display: flex;
+    align-items: center;
+}

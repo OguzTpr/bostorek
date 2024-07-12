@@ -2,7 +2,7 @@
         <div>
         <sectionHeader title="R.e.g.i.s.t.e.r" text="A basic form for register to Bostorek system"/>
     </div>
-<section>
+<section class="full-section">
     <div class="container">
         <form class="mt-5" @submit.prevent="submitform">
             <div class="row justify-content-center">
@@ -54,7 +54,7 @@
         },
         methods: {
             submitform() {
-                console.log('Form', this.formDa)
+                console.log('Reg Form', this.formDa)
             }
 
             }

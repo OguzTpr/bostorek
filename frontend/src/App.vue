@@ -1,16 +1,18 @@
 <template>
     <NavBar />
     <RouterView />
+    <Footer />
     </template>
 
 <script>
 
 import NavBar from '@/components/navbar.vue';
-
+import Footer from '@/components/footer.vue';
 export default {
     name: "App",
     components: {
-        NavBar
+        NavBar,
+        Footer
     },
     
     data() {
@@ -22,12 +24,4 @@ export default {
 </script>
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200..1000&display=swap');
-
-html, body {
- font-family: "Mulish", sans-serif;
-}
-a {
-    text-decoration: none;
-}
 </style>
