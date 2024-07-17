@@ -1,7 +1,13 @@
 import Book from "../models/bookM.js";
 
-const getAllBooks = (req,res) => {
-   console.log(`GET ALL BOOKS`)
+const getAllBooks = async (req,res) => {
+   try {
+     const books = await Book.find();
+     res.status(200).json(books)
+   } catch (error) {
+    console.error('Error at finding books', error);
+    return res.status(500).json({ error: "Internal server error!" });
+   }
 }
 
 const createBook = async (req,res) => {

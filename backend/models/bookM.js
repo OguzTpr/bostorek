@@ -1,10 +1,6 @@
 import M from 'mongoose';
 
 const bookSchema = new M.Schema({
-    id: {
-        type: Number,
-        required: true
-    },
     name: {
         type: String,
         required: true
