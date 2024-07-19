@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import Book from "../models/bookM.js";
 
 const getAllBooks = async (req,res) => {
@@ -9,8 +10,27 @@ const getAllBooks = async (req,res) => {
     return res.status(500).json({ error: "Internal server error!" });
    }
 }
+const getAbook = async (req,res) => {
+  const { id } = req.params;
 
-const createBook = async (req,res) => {
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({error: 'Object id is not valid'});
+  }
+try {
+    const book = await Book.findById(id);
+
+  if (!book) {
+    return res.status(404).json({error: 'The book is not exist'});
+  }
+  res.status(200).json(book); 
+} catch (error) {
+    console.error('Error at finding a book', error);
+    return res.status(500).json({ error: "Internal server error!" });
+}
+ 
+};
+
+const createAbook = async (req,res) => {
 
    try {
     
@@ -47,4 +67,36 @@ const createBook = async (req,res) => {
    }
 }
 
-export { getAllBooks, createBook }
+const updateAbook = async (req, res) => {
+  const { id } = req.params;
+  const { name, author, page, description, rating, image, uploadDate } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({error: 'Object id is not valid'});
+  }
+  try {
+    const book = await Book.findById(id);
+
+    if (!book) {
+      return res.status(404).json({error: 'The book is not exist'});
+    }
+
+    book.name = name || book.name;
+    book.author = author || book.author;
+    book.page = page || book.page;
+    book.description = description || book.description;
+    book.rating = rating || book.rating;
+    book.image = image || book.image;
+    book.uploadDate = uploadDate || book.uploadDate;
+    
+    await book.save();
+
+    res.status(200).json({message: 'The book updated!'})
+
+  } catch (error) {
+    console.error('Error at updating a book', error);
+    return res.status(500).json({ error: "Internal server error!" });
+  }
+};
+
+export { getAllBooks, getAbook, createAbook, updateAbook }
