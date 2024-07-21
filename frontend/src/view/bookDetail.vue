@@ -1,6 +1,9 @@
 <template>
  <section class="full-section">
-    <div class="container">
+    <div class="container" v-if="loading">
+
+    </div>
+    <div class="container" v-else>
         <sectionHeader :title="book.name" :text="book.author" />
         <font-awesome-icon icon="arrow-left" size="2xl" class="mb-2" style="cursor:pointer" @click="backToBooks" />
         <div class="row">
@@ -53,7 +56,7 @@
 </template>
 
 <script>
-import books from '@/db';
+
 import sectionHeader from '@/components/sectionheader.vue';
 export default {
         name: "bookDetail",
@@ -62,16 +65,29 @@ export default {
         },
         data() {
             return {
-                book: null
+                book: null,
+                loading: true
             }
         },
         created() {
-            const bookId = this.$route.params.id;
-            this.book = books.find(book => book.id === parseInt(bookId))
+            this.fetchAbook()
+           /*  const bookId = this.$route.params.id;
+            this.book = books.find(book => book.id === parseInt(bookId)) */
         },
         methods: {
             backToBooks() {
                 this.$router.push({name:"books"})
+            },
+            async fetchAbook() {
+                const bookId = this.$route.params.id;
+                try {
+                    const response = await fetch(`http://localhost:3000/api/v1/books/${bookId}`);
+                    const data = await response.json();
+                    this.book = data;
+                    this.loading = false;
+                } catch (error) {
+                    
+                }
             }
         }
     }

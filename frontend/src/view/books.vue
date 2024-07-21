@@ -12,7 +12,8 @@
 import pagination from '@/components/pagination.vue';
 import BookList from '@/components/booklist.vue';
 import sectionHeader from '@/components/sectionheader.vue';
-import books from '@/db.js';
+
+
     export default {
         name: "books",
         components:{
@@ -22,7 +23,7 @@ import books from '@/db.js';
         },
         data() {
             return{
-                books: books,
+                books: [],
                 currentPage: 1,
                 itemsPerPage: 8
             }
@@ -41,9 +42,21 @@ import books from '@/db.js';
         methods: {
             upPage(page) {
                 this.currentPage = page
+            },
+
+            async fetchBooks() {
+                try {
+                    const response = await fetch('http://localhost:3000/api/v1/books');
+                    const data = await response.json();
+                    this.books = data;
+                } catch (error) {
+                    
+                }
             }
-        }
-        
+        },
+        created() {
+            this.fetchBooks()
+        }        
     }
 </script>
 

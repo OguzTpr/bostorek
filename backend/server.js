@@ -1,12 +1,16 @@
 import express from 'express';
 import bookR from './routes/bookR.js';
 import connectDB from './config/db.js';
+import C from 'cors';
 
 const A = express();
 const P = 3000;
 const H = '127.0.0.1';
-
-
+const Copt = {
+    origin: 'http://localhost:5173',
+    credentials: true
+}
+A.use(C(Copt))
 A.use(express.json())
 A.use('/api/v1/books', bookR);
 
