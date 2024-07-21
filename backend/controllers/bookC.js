@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import Book from "../models/bookM.js";
+import { findDocumentById, isValidObjectId } from "../utils/index.js";
 
 const getAllBooks = async (req,res) => {
    try {
@@ -13,15 +14,21 @@ const getAllBooks = async (req,res) => {
 const getAbook = async (req,res) => {
   const { id } = req.params;
 
-  if (!mongoose.Types.ObjectId.isValid(id)) {
+  /* if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({error: 'Object id is not valid'});
-  }
+  } */
+
+if (isValidObjectId(id, res)) return;
+
 try {
-    const book = await Book.findById(id);
+   /* const book = await Book.findById(id);
 
   if (!book) {
     return res.status(404).json({error: 'The book is not exist'});
-  }
+  }*/
+ const book = await findDocumentById(Book, id, res);
+ if (!book) return
+
   res.status(200).json(book); 
 } catch (error) {
     console.error('Error at finding a book', error);
@@ -71,15 +78,11 @@ const updateAbook = async (req, res) => {
   const { id } = req.params;
   const { name, author, page, description, rating, image, uploadDate } = req.body;
 
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).json({error: 'Object id is not valid'});
-  }
-  try {
-    const book = await Book.findById(id);
+  if (isValidObjectId(id, res)) return;
 
-    if (!book) {
-      return res.status(404).json({error: 'The book is not exist'});
-    }
+  try {
+     const book = await findDocumentById(Book, id, res);
+ if (!book) return
 
     book.name = name || book.name;
     book.author = author || book.author;
@@ -99,4 +102,23 @@ const updateAbook = async (req, res) => {
   }
 };
 
-export { getAllBooks, getAbook, createAbook, updateAbook }
+const deleteAbook = async (req, res) => {  
+  const { id } = req.params;
+
+  if (isValidObjectId(id, res)) return;
+
+  try {
+    const book = await findDocumentById(Book, id, res);
+    if (!book) return
+
+    await book.deleteOne();
+
+    res.status(200).json({message: 'The book deleted!'})
+
+  } catch (error) {
+    console.error('Error at updating a book', error);
+    return res.status(500).json({ error: "Internal server error!" });
+  }
+};
+
+export { getAllBooks, getAbook, createAbook, updateAbook, deleteAbook }
