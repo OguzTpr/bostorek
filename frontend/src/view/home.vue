@@ -2,7 +2,7 @@
     <section>
         <Carousel :items="carouselItems" height="400px" />
     </section>
-    <section class="my-5" style="margin-bottom: 200px !important">
+    <section class="my-5">
         <div class="container">
             <sectionHeader
                 title="F.e.a.t.u.r.e.d"
@@ -32,7 +32,12 @@
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <div class="accordion">
+                    <div v-if="isLoading" class="d-flex justify-content-center">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <div v-else class="accordion">
                         <div
                             class="accordion-item"
                             v-for="(book, index) in filtered"
@@ -66,10 +71,10 @@
                                         >
                                             <p>{{ book.description }}</p>
                                             <div
-                                                class="badge"
+                                                class="badge align-self-start"
                                                 style="
                                                     background-color: var(
-                                                        --second
+                                                        --third
                                                     );
                                                 "
                                             >
@@ -93,7 +98,8 @@ import sectionHeader from '@/components/sectionheader.vue'
 import hero_1 from '@/assets/hero_1.jpg'
 import hero_2 from '@/assets/hero_2.jpg'
 import hero_3 from '@/assets/hero_3.jpg'
-import books from '@/db'
+import { useBookStore } from '@/stores/bookStore'
+import { mapState } from 'pinia'
 export default {
     name: 'home',
     components: {
@@ -125,7 +131,8 @@ export default {
                         'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.',
                 },
             ],
-            books: [],
+            // books: [],
+            // BStore: useBookStore(),
             selected: 'latest',
             openAcc: 0,
         }
@@ -134,15 +141,7 @@ export default {
         selectFilter(filter) {
             this.selected = filter
         },
-        async fetchBooks() {
-            try {
-                const response = await fetch(
-                    'http://localhost:3000/api/v1/books'
-                )
-                const data = await response.json()
-                this.books = data
-            } catch (error) {}
-        },
+
         toggleAcc(index) {
             if (this.openAcc === index) {
                 this.openAcc = -1
@@ -151,10 +150,10 @@ export default {
             }
         },
     },
-    created() {
-        this.fetchBooks()
-    },
+
     computed: {
+        ...mapState(useBookStore, ['books', 'isLoading']),
+
         filtered() {
             const copyBooks = [...this.books]
             if (this.selected === 'latest') {
@@ -164,11 +163,26 @@ export default {
                     )
                     .slice(0, 4)
             } else if (this.selected === 'best') {
-                return copyBooks.sort((a, b) => b.rating > a.rating).slice(0, 4)
+                return copyBooks.sort((a, b) => b.rating - a.rating).slice(0, 4)
             }
         },
     },
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.list-group-item.active {
+    background-color: var(--primary);
+    border-color: var(--third);
+}
+.accordion-button {
+    color: var(--primary);
+}
+.accordion-button:not(.collapsed) {
+    background-color: var(--third);
+}
+.accordion-button:focus {
+    outline: none;
+    box-shadow: none;
+}
+</style>
