@@ -98,7 +98,7 @@ import sectionHeader from '@/components/sectionheader.vue'
 import hero_1 from '@/assets/hero_1.jpg'
 import hero_2 from '@/assets/hero_2.jpg'
 import hero_3 from '@/assets/hero_3.jpg'
-import { useBookStore } from '@/stores/bookStore'
+import { useBookStore } from '@/stores/bookStore.js'
 import { mapState } from 'pinia'
 export default {
     name: 'home',
