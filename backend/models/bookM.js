@@ -1,39 +1,39 @@
-import M from 'mongoose';
+import M from 'mongoose'
 
-const bookSchema = new M.Schema({
-    name: {
-        type: String,
-        required: true
+const bookSchema = new M.Schema(
+    {
+        name: {
+            type: String,
+            required: true,
+        },
+        author: {
+            type: String,
+            required: true,
+        },
+        page: {
+            type: Number,
+            min: 1,
+        },
+        description: {
+            type: String,
+            required: true,
+        },
+        rating: {
+            type: Number,
+            min: 0,
+            max: 10,
+        },
+        image: {
+            type: String,
+        },
+        uploadDate: {
+            type: String,
+        },
     },
-    author: {
-        type: String,
-        required: true
-    },
-    page: {
-        type: Number,
-        min: 1,
-    },
-    description: {
-        type: String,
-        required: true
-    },
-    rating: {
-        type: Number,
-        min: 0,
-        max: 10
-    },
-    image: {
-        type: String,
-    },
-    uploadDate: {
-        type: String,
-    },
-},
 
-{timestamps: true}
+    { timestamps: true }
+)
 
-);
+const Book = M.model('Book', bookSchema)
 
-const Book = M.model('Book', bookSchema);
-
-export default Book;
+export default Book
